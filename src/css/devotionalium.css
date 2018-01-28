@@ -1,0 +1,23 @@
+.devotionalium-wp h2.title {
+
+}
+
+.devotionalium-wp .versetext
+{
+  font-style: italic;
+}
+.devotionalium-wp .versetext.original
+{
+  font-style: normal;
+}
+.devotionalium-wp .reference-link-container
+{
+  text-align: right;
+}
+.devotionalium-wp .versetext.hebrew {
+  font-size: 1.5em;
+  line-height: 1.1;
+}
+.devotionalium-wp .versetext.greek {
+
+}

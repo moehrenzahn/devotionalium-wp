@@ -1,0 +1,32 @@
+<?php /** @var \Devotionalium\Block\Devotionalium $block */ ?>
+<style>
+    <?php echo $block->getCustomCss(); ?>
+</style>
+<div class="devotionalium-wp">
+    <h2 class="title">
+        <a href="https://devotionalium.com">Devotionalium</a>
+        <?php echo __('for', 'devotionalium'); ?>
+        <?php echo date_i18n(
+            get_option('date_format'),
+            $block->getDevotionalium()->getDate()->getTimestamp()
+        ); ?>
+    </h2>
+        <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
+            <div class='<?php echo $verse->getBiblePart() === 0 ? 'ot' : 'nt' ?>'>
+                <?php if ($block->showOriginalLanguages()) :?>
+                    <p class="versetext original <?php echo $verse->getBiblePart() == 0 ? 'hebrew' : 'greek';?>"
+                                <?php echo $verse->getBiblePart() === 0 ? 'dir="rtl"' : ''; ?>>
+                        <?php echo $verse->getTextOriginal(); ?>
+                    </p>
+                <?php endif; ?>
+                <p class="versetext">
+                    <?php echo $verse->getText(); ?>
+                    <div class="reference-link-container">
+                        <a class='reference-link'
+                           href="https://devotionalium.com/read/schla-40-20-13-15">
+                            <?php echo $verse->getReferenceString(); ?></a>
+                    </div>
+                </p>
+            </div>
+        <?php endforeach; ?>
+</div>

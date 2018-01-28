@@ -1,0 +1,61 @@
+<?php /** @var \Devotionalium\Block\Backend\Config\Config $block */ ?>
+<div class="wrap">
+<h1><?php echo $block->getTitle(); ?></h1>
+<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+<table class="form-table">
+<tbody>
+
+<?php foreach ($block->getConfigEntries() as $preference) : ?>
+    <tr>
+        <th scope="row">
+            <label for="<?php echo $preference->slug; ?>"><?php echo $preference->title; ?></label>
+        </th>
+        <td>
+        <?php if ($preference instanceof \Devotionalium\Model\Config\Preference\BooleanPreference) : ?>
+            <input type='hidden' value='0' name='<?php echo $preference->slug; ?>'>
+            <input name="<?php echo $preference->slug; ?>"
+                   type="checkbox"
+                   id="<?php echo $preference->slug; ?>"
+                <?php echo $preference->value ? 'checked' : ''; ?>>
+        <?php elseif ($preference instanceof \Devotionalium\Model\Config\Preference\SelectPreference) : ?>
+            <select name="<?php echo $preference->slug; ?>"
+                    id="<?php echo $preference->slug; ?>">
+                <?php foreach ($preference->options as $optionSlug => $optionName) : ?>
+                    <option value="<?php echo $optionSlug; ?>"
+                        <?php echo ($optionSlug === $preference->value) ? 'selected' : ''; ?>>
+                        <?php echo $optionName; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        <?php elseif ($preference instanceof \Devotionalium\Model\Config\Preference\TextboxPreference) : ?>
+            <textarea rows="10"
+                      cols="50"
+                      name="<?php echo $preference->slug; ?>"
+                      type="text"
+                      id="<?php echo $preference->slug; ?>"
+            ><?php echo $preference->value; ?></textarea>
+        <?php elseif ($preference instanceof \Devotionalium\Model\Config\Preference) : ?>
+            <input name="<?php echo $preference->slug; ?>"
+                   type="text"
+                   id="<?php echo $preference->slug; ?>"
+                   value="<?php echo $preference->value; ?>">
+        <?php endif; ?>
+            <p class="description" id="<?php echo $preference->slug; ?>_description">
+                <?php echo $preference->description; ?>
+            </p>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+</tbody>
+</table>
+<p class="submit">
+    <input type="submit"
+           name="submit"
+           id="submit"
+           class="button button-primary"
+           value="<?php echo __('Apply'); ?>">
+</p>
+<input type="hidden" name="action" value="<?php echo $block->getActionName() ?>">
+</form>
+</div>
