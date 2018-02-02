@@ -2,8 +2,10 @@
 
 namespace Devotionalium\Model;
 
+use Devotionalium\Block;
 use Devotionalium\Block\Devotionalium;
 use Devotionalium\ConfigAccessor;
+use Devotionalium\WidgetBlock;
 
 class Widget extends \WP_Widget
 {
@@ -44,12 +46,28 @@ class Widget extends \WP_Widget
      */
     public function widget($args, $instance)
     {
-        $block = new Devotionalium(
-            $this->config,
-            '/View/devotionalium.phtml',
-            $this->devotionalium
-        );
-        $block->renderTemplate();
+        try {
+            $block = new Block\DevotionaliumWidget(
+                $this->config,
+                '/View/devotionalium-widget.phtml',
+                $this->devotionalium,
+                $args['before_widget'],
+                $args['after_widget'],
+                $args['before_title'],
+                $args['after_title']
+            );
+            echo $block->getHtml();
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            $block = new WidgetBlock(
+                '/View/error-widget.phtml',
+                $args['before_widget'],
+                $args['after_widget'],
+                $args['before_title'],
+                $args['after_title']
+            );
+            echo $block->getHtml();
+        }
     }
 
     /**

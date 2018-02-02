@@ -5,7 +5,6 @@ namespace Devotionalium\Model;
 use Devotionalium\Block;
 use Devotionalium\ConfigAccessor;
 use Devotionalium\Devotionalium\Devotionalium;
-use Devotionalium\Loader;
 
 /**
  * Class ShortCode

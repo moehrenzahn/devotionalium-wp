@@ -20,6 +20,14 @@ class Communicator
 
     const PARAM_DAYOFFSET = 'dayOffset';
 
+    const ACTION_VERSIONS = 'versions';
+    const ACTION_DEVOTIONALIUM = 'devotionalium';
+
+    const ACTIONS = [
+        self::ACTION_VERSIONS,
+        self::ACTION_DEVOTIONALIUM,
+    ];
+
     /**
      * @var string
      */
@@ -37,11 +45,17 @@ class Communicator
 
     /**
      * @param array $parameters
-     * @return array
+     * @param string $action
+     * @return mixed[]
      */
-    public function get(array $parameters)
+    public function get(array $parameters, $action = '')
     {
-        $url = $this->endpoint.'?'.http_build_query($parameters);
+        if (in_array($action, self::ACTIONS)) {
+            $action = '/'.$action;
+        } else {
+            $action = '';
+        }
+        $url = $this->endpoint.$action.'?'.http_build_query($parameters);
         $response = $this->makeRequest($url);
 
         return $response;

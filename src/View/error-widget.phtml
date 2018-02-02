@@ -1,0 +1,8 @@
+<?php
+/** @var \Devotionalium\WidgetBlock $block */
+echo $block->getBeforeWidget();
+echo $block->getBeforeTitle();
+echo 'Devotionalium';
+echo $block->getAfterTitle();
+$block->renderPartial('error');
+echo $block->getAfterWidget();

@@ -3,6 +3,7 @@
 namespace Devotionalium\Model\Api;
 
 use Devotionalium\Devotionalium\Devotionalium;
+use Devotionalium\Model\Storage\Transient;
 
 class DevotionaliumApi
 {
@@ -12,6 +13,20 @@ class DevotionaliumApi
      * @var Communicator
      */
     private $communicator;
+
+    /**
+     * @var Transient
+     */
+    private $transient;
+
+    /**
+     * DevotionaliumApi constructor.
+     */
+    public function __construct()
+    {
+        $this->communicator = new Communicator(self::API_VERSION);
+        $this->transient = new Transient();
+    }
 
     /**
      * @param string $version
@@ -24,7 +39,14 @@ class DevotionaliumApi
         $language,
         $dayOffset
     ) {
-        $this->communicator = new Communicator(self::API_VERSION);
+        $index = implode(
+            '-',
+            [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $dayOffset]
+        );
+        if ($cached = $this->transient->load($index)) {
+            return $cached;
+        }
+
         $response = $this->communicator->get([
             Communicator::PARAM_VERSION => $version,
             Communicator::PARAM_LANGUAGE => $language,
@@ -53,6 +75,34 @@ class DevotionaliumApi
         $devotionalium->setVerses($verses);
         $devotionalium->setDate($date);
 
+        $this->transient->save($index, $devotionalium, HOUR_IN_SECONDS*4);
         return $devotionalium;
+    }
+
+    /**
+     * @param $language
+     * @return Version[]
+     */
+    public function loadVersions($language = 'en')
+    {
+        $index = Communicator::ACTION_VERSIONS.'-'.$language;
+
+        if ($cached = $this->transient->load($index)) {
+            return $cached;
+        }
+
+        $response = $this->communicator->get(
+            [Communicator::PARAM_LANGUAGE => $language],
+            Communicator::ACTION_VERSIONS
+        );
+        $versions = [];
+        foreach ($response['versions'] as $version) {
+            $versions[] = new Version(
+                $version['id'],
+                $version['name']
+            );
+        }
+        $this->transient->save($index, $versions);
+        return $versions;
     }
 }

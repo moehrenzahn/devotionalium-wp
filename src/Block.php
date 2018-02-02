@@ -89,6 +89,6 @@ class Block
             $post = $postObject;
         }
         $block = $this; // make the block instance avaliable as $block in the template
-        require(__DIR__.'/Template/' . $path .'.phtml');
+        require(__DIR__.'/View/' . $path .'.phtml');
     }
 }

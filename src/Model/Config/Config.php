@@ -2,6 +2,7 @@
 
 namespace Devotionalium\Model\Config;
 
+use Devotionalium\Model\Api\DevotionaliumApi;
 use Devotionalium\Model\Config\Preference\BooleanPreference;
 use Devotionalium\Model\Config\Preference\SelectPreference;
 use Devotionalium\Model\Config\Preference\TextboxPreference;
@@ -32,6 +33,13 @@ class Config
     public function __construct($configName)
     {
         $preferenceStorage = new \Devotionalium\Model\Storage\Config\Preference();
+
+        $versions = (new DevotionaliumApi())->loadVersions();
+        $versionsArray = [];
+        foreach ($versions as $version) {
+            $versionsArray[$version->getId()] = $version->getName();
+        }
+
         $this->configName = $configName;
         $this->options = [
             new BooleanPreference(
@@ -54,13 +62,7 @@ class Config
                 $preferenceStorage,
                 'version',
                 __('Bible Version', 'devotionalium'),
-                [
-                    'web' => 'World English Bible',
-                    'kjv' => 'King James Version',
-                    'elb' => 'Elberfelder 1905',
-                    'lut' => 'Luther 1912',
-                    'schla' => 'Schlachter 1951',
-                ],
+                $versionsArray,
                 __('Choose a bible Version to display the bible verses in.', 'devotionalium')
             ),
             new TextboxPreference(
