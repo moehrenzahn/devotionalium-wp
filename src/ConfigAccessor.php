@@ -32,7 +32,13 @@ class ConfigAccessor
 
     public function getLanguage()
     {
-        return $this->getConfigValue('lang');
+        if ($language = $this->getConfigValue('lang')) {
+            return $language;
+        }
+        if (strpos(get_locale(), 'de-') !== false) {
+            return 'de';
+        }
+        return 'en';
     }
 
     public function getVersion()
@@ -57,7 +63,7 @@ class ConfigAccessor
     private function getConfigValue($key)
     {
         $preference = $this->configModel->getPreferenceBySlug($key);
-        if ($preference) {
+        if ($preference && $preference->getValue()) {
             return $preference->getValue();
         } else {
             return null;
