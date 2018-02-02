@@ -61,4 +61,12 @@ class Devotionalium extends \Devotionalium\Block
     {
         return $this->config->getCustomCss();
     }
+
+    /**
+     * @return bool
+     */
+    public function useLinks()
+    {
+        return $this->config->useOutgoingLinks();
+    }
 }

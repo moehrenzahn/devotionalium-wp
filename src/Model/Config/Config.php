@@ -65,6 +65,12 @@ class Config
                 $versionsArray,
                 __('Choose a bible Version to display the bible verses in.', 'devotionalium')
             ),
+            new BooleanPreference(
+                $preferenceStorage,
+                'useOutgoingLinks',
+                __('Outgoing links', 'devotionalium'),
+                __('Include hyperlinks to the full readings on devotionalium.com (recommended).', 'devotionalium')
+            ),
             new TextboxPreference(
                 $preferenceStorage,
                 'customCss',

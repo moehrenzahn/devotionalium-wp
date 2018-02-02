@@ -22,7 +22,7 @@ class AdminPage
     private $slug;
 
     /**
-     * @var \Eule\Block
+     * @var Block
      */
     private $block;
 
