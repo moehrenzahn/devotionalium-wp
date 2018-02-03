@@ -14,12 +14,12 @@ class AdminPage
     /**
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var Block
@@ -51,7 +51,7 @@ class AdminPage
         add_options_page(
             $this->title,
             $this->title,
-            "read",
+            "manage_options",
             $this->slug,
             [$this, 'renderContent']
         );
@@ -69,7 +69,7 @@ class AdminPage
      * @param $title
      * @return mixed|string
      */
-    private function generateSlug($title)
+    protected function generateSlug($title)
     {
         $result = strtolower($title);
         $result = str_replace(' ', '_', $result);
@@ -83,7 +83,7 @@ class AdminPage
      */
     public function addConfigLinkToPluginPage($links)
     {
-        $settingsLink = '<a href="options-general.php?page=devotionalium">' . __('Settings') . '</a>';
+        $settingsLink = '<a href="options-general.php?page='.$this->slug.'">' . __('Settings') . '</a>';
         array_push($links, $settingsLink);
 
         return $links;

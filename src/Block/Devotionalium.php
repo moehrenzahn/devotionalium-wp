@@ -59,7 +59,7 @@ class Devotionalium extends \Devotionalium\Block
      */
     public function getCustomCss()
     {
-        return $this->config->getCustomCss();
+        return esc_html($this->config->getCustomCss());
     }
 
     /**

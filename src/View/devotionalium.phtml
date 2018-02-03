@@ -28,13 +28,13 @@
             <div class="reference-link-container">
                 <?php if ($block->useLinks()) : ?>
                     <a class='reference-link'
-                       href="https://devotionalium.com/read/schla-40-20-13-15">
+                       href="<?php echo $verse->getReadingUrl(); ?>">
                         <?php echo $verse->getReferenceString(); ?></a>
                 <?php else : ?>
-        <p class='reference-link'><?php echo $verse->getReferenceString(); ?></p>
-    <?php endif; ?>
+                    <p class='reference-link'><?php echo $verse->getReferenceString(); ?></p>
+                <?php endif; ?>
+            </div>
+        </p>
     </div>
-    </p>
-</div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
 </div>

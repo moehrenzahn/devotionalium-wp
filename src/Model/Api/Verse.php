@@ -50,17 +50,23 @@ class Verse
     private $reference;
 
     /**
+     * @var string
+     */
+    private $readingUrl;
+
+    /**
      * Verse constructor.
      *
-     * @param int $biblePart
-     * @param string $book
-     * @param int $bookNumber
-     * @param int $chapter
-     * @param string $text
-     * @param string $textOriginal
-     * @param int[] $verses
-     * @param string $versionName
-     * @param string $reference
+     * @param $biblePart
+     * @param $book
+     * @param $bookNumber
+     * @param $chapter
+     * @param $text
+     * @param $textOriginal
+     * @param array $verses
+     * @param $versionName
+     * @param $reference
+     * @param $readingUrl
      */
     public function __construct(
         $biblePart,
@@ -71,7 +77,8 @@ class Verse
         $textOriginal,
         array $verses,
         $versionName,
-        $reference
+        $reference,
+        $readingUrl
     ) {
         $this->biblePart = $biblePart;
         $this->book = $book;
@@ -82,6 +89,7 @@ class Verse
         $this->verses = $verses;
         $this->versionName = $versionName;
         $this->reference = $reference;
+        $this->readingUrl = $readingUrl;
     }
 
     /**
@@ -154,5 +162,13 @@ class Verse
     public function getReferenceString()
     {
         return $this->reference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReadingUrl()
+    {
+        return $this->readingUrl;
     }
 }

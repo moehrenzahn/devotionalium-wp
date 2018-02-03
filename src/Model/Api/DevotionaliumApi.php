@@ -41,7 +41,7 @@ class DevotionaliumApi
     ) {
         $index = implode(
             '-',
-            [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $dayOffset]
+            [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $dayOffset, date('Y-m-d')]
         );
         if ($cached = $this->transient->load($index)) {
             return $cached;
@@ -65,7 +65,8 @@ class DevotionaliumApi
                     $item['textOriginal'],
                     $item['verses'],
                     $item['version']['name'],
-                    $item['reference']
+                    $item['reference'],
+                    $item['readingUrl']
                 );
             }
         }
@@ -75,7 +76,7 @@ class DevotionaliumApi
         $devotionalium->setVerses($verses);
         $devotionalium->setDate($date);
 
-        $this->transient->save($index, $devotionalium, HOUR_IN_SECONDS*4);
+        $this->transient->save($index, $devotionalium);
         return $devotionalium;
     }
 

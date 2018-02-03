@@ -14,7 +14,8 @@
   text-align: right;
 }
 .devotionalium-wp .versetext.hebrew {
-  font-size: 1.3em;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 150%;
   line-height: 1.2;
 }
 .devotionalium-wp .versetext.greek {
