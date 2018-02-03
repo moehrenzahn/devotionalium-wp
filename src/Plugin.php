@@ -58,9 +58,9 @@ class Plugin
         } else {
             $this->initCss();
             $this->initShortcode();
-            $this->initWidget();
         }
 
+        $this->initWidget();
         $this->loader->run();
     }
 
@@ -183,7 +183,7 @@ class Plugin
     /**
      * @return Devotionalium
      */
-    public function getDevotionalium(): Devotionalium
+    public function getDevotionalium()
     {
         if (!isset($this->devotionalium)) {
             $this->devotionalium = new Devotionalium(

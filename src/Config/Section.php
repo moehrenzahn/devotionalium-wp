@@ -69,7 +69,7 @@ class Section
     /**
      * @return Setting[]
      */
-    public function getSettings(): array
+    public function getSettings()
     {
         return $this->settings;
     }

@@ -45,7 +45,7 @@ class Devotionalium
     /**
      * @return Verse[]
      */
-    public function getVerses(): array
+    public function getVerses()
     {
         if (!isset($this->verses)) {
             $this->load();
@@ -56,7 +56,7 @@ class Devotionalium
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate()
     {
         if (!isset($this->date)) {
             $this->load();

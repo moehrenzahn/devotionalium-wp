@@ -47,7 +47,7 @@ class WidgetBlock extends Block
     /**
      * @return string
      */
-    public function getBeforeWidget(): string
+    public function getBeforeWidget()
     {
         return $this->beforeWidget;
     }
@@ -55,7 +55,7 @@ class WidgetBlock extends Block
     /**
      * @return string
      */
-    public function getAfterWidget(): string
+    public function getAfterWidget()
     {
         return $this->afterWidget;
     }
@@ -63,7 +63,7 @@ class WidgetBlock extends Block
     /**
      * @return string
      */
-    public function getBeforeTitle(): string
+    public function getBeforeTitle()
     {
         return $this->beforeTitle;
     }
@@ -71,7 +71,7 @@ class WidgetBlock extends Block
     /**
      * @return string
      */
-    public function getAfterTitle(): string
+    public function getAfterTitle()
     {
         return $this->afterTitle;
     }
