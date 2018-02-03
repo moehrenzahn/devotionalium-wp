@@ -68,53 +68,15 @@ class Communicator
      */
     private function makeRequest($url)
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, true);
-        $response = curl_exec($curl);
-        curl_close($curl);
+        $response = wp_remote_post($url);
 
-        $headers = $this->getHeaders($response);
-        $body = $this->getBody($response);
+        $responseCode = $response['response']['code'];
+        $responseBody = $response['body'];
 
-        if (strpos($headers['httpCode'], '200') === false) {
+        if ($responseCode !== 200) {
             throw new \Exception('Error connecting to server');
         }
 
-        return $body;
-    }
-
-    /**
-     * @param string $response
-     * @return array
-     */
-    private function getHeaders($response)
-    {
-        $headers = array();
-        $headerText = substr($response, 0, strpos($response, "\r\n\r\n"));
-        foreach (explode("\r\n", $headerText) as $i => $line) {
-            if ($i === 0) {
-                $headers['httpCode'] = $line;
-            } else {
-                list ($key, $value) = explode(': ', $line);
-
-                $headers[$key] = $value;
-            }
-        }
-
-        return $headers;
-    }
-
-    /**
-     * @param $response
-     * @return array
-     */
-    private function getBody($response)
-    {
-        $parts = explode("\r\n", $response);
-        $body = array_pop($parts);
-
-        return json_decode($body, true);
+        return json_decode($responseBody, true);
     }
 }
