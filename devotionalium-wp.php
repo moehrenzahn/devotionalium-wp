@@ -8,7 +8,7 @@ Author:       Max Melzer
 Author URI:   http://moehrenzahn.de/en/about
 License:      GPLv2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain:  devotionalium
+Text Domain:  devotionalium-wp
 Domain Path:  /languages
 */
 if (!defined('ABSPATH')) {
@@ -17,10 +17,13 @@ if (!defined('ABSPATH')) {
 
 require_once('src/Autoloader.php');
 spl_autoload_register('Devotionalium\Autoloader::load');
-load_plugin_textdomain(
-    'devotionalium',
-    false,
-    basename(dirname(__FILE__)).'/languages'
-);
 
+function devotionaliumLoadPluginTextdomain()
+{
+    load_plugin_textdomain(
+        'devotionalium-wp',
+        false,
+        basename(dirname(__FILE__)).'/languages/'
+    );
+}
 new \Devotionalium\Plugin();

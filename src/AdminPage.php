@@ -83,7 +83,7 @@ class AdminPage
      */
     public function addConfigLinkToPluginPage($links)
     {
-        $settingsLink = '<a href="options-general.php?page='.$this->slug.'">' . __('Settings') . '</a>';
+        $settingsLink = '<a href="options-general.php?page='.$this->slug.'">'.__('Settings').'</a>';
         array_push($links, $settingsLink);
 
         return $links;

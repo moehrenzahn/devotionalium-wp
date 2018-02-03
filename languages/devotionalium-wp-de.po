@@ -1,5 +1,0 @@
-msgid ":"
-msgstr "–"
-
-msgid "for"
-msgstr "für den"

@@ -1,0 +1,117 @@
+# Copyright (C) 2018 Devotionalium
+# This file is distributed under the same license as the Devotionalium package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Devotionalium 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/devotionalium-wp\n"
+"POT-Creation-Date: 2018-02-03 13:38:57+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: src/AdminPage.php:86
+msgid "Settings"
+msgstr ""
+
+#: src/Model/Widget.php:37
+msgid "Displays daily bible verses from devotionalium.com"
+msgstr ""
+
+#: src/Model/Widget.php:81
+msgid "You can configure this widget via the Plugin options page."
+msgstr ""
+
+#: src/Plugin.php:80
+msgid "Original languages"
+msgstr ""
+
+#: src/Plugin.php:81
+msgid "Display bible verses in original languages greek and hebrew as well."
+msgstr ""
+
+#: src/Plugin.php:86
+msgid "Bible Version"
+msgstr ""
+
+#: src/Plugin.php:87
+msgid "Choose a bible version to display the bible verses in."
+msgstr ""
+
+#: src/Plugin.php:93
+msgid "Outgoing links"
+msgstr ""
+
+#: src/Plugin.php:94
+msgid ""
+"Include hyperlinks to the full readings on devotionalium.com (recommended)."
+msgstr ""
+
+#: src/Plugin.php:101
+msgid "Language"
+msgstr ""
+
+#: src/Plugin.php:102
+msgid "Choose a language for text displayed by the plugin."
+msgstr ""
+
+#: src/Plugin.php:104
+msgid "English"
+msgstr ""
+
+#: src/Plugin.php:105
+msgid "German"
+msgstr ""
+
+#: src/Plugin.php:111
+msgid "Day Offset"
+msgstr ""
+
+#: src/Plugin.php:112
+msgid ""
+"Offset the displayed Devotionalium by the given amount of days (-7 to 7)."
+msgstr ""
+
+#: src/Plugin.php:117
+msgid "Custom CSS"
+msgstr ""
+
+#: src/Plugin.php:118
+msgid ""
+"Define custom styles for displaying Devotionalium. Use class \"."
+"devotionalium-wp\" to limit changes to the plugin"
+msgstr ""
+
+#: src/Plugin.php:134
+msgid "Experimental"
+msgstr ""
+
+#: src/Plugin.php:137
+msgid "Don't touch this if you don't know what you are doing."
+msgstr ""
+
+#. #-#-#-#-#  devotionalium-wp.pot (Devotionalium 1.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: src/Plugin.php:140
+msgid "Devotionalium"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://devotionalium.com/wordpress/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Include today's bible verses from devotionalium.com, with rich support for "
+"original languages."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Max Melzer"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://moehrenzahn.de/en/about"
+msgstr ""
