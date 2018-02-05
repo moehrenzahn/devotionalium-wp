@@ -69,12 +69,15 @@ class Communicator
     private function makeRequest($url)
     {
         $response = wp_remote_post($url);
+        if (is_wp_error($response)) {
+            throw new \Exception('Error connecting to server');
+        }
 
         $responseCode = $response['response']['code'];
         $responseBody = $response['body'];
 
         if ($responseCode !== 200) {
-            throw new \Exception('Error connecting to server');
+            throw new \Exception('The Server returned an error');
         }
 
         return json_decode($responseBody, true);
