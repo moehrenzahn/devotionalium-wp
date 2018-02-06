@@ -12,10 +12,7 @@ Include today's bible verses from devotionalium.com, with rich support for origi
 
 == Description ==
 
-Devotionalium for Wordpress is a plugin that utilises the
-[Devotionalium.com](https://devotionalium.com/api/docs) API to display today's
-featured bible verses from [Devotionalium.com](https://devotionalium.com) on
-your Wordpress page.
+Devotionalium for Wordpress is a plugin that utilises the [Devotionalium.com](https://devotionalium.com/api/docs) API to display today's featured bible verses from [Devotionalium.com](https://devotionalium.com) on your Wordpress page.
 
 You can use it as
 
@@ -23,9 +20,7 @@ You can use it as
 - via the *shortcode* `[devotionalium]`
 - or directly in your template via `<?php echo do_shortcode('[devotionalium]'); ?>`.
 
-It offers rich configuration options for language, bible version and optional
-display of Devotionalium in the original biblical languages ancient hebrew and
-ancient greek.
+It offers rich configuration options for language, bible version and optional display of Devotionalium in the original biblical languages ancient hebrew and ancient greek.
 
 == Installation ==
 
@@ -39,8 +34,7 @@ This section describes how to install the plugin and get it working.
 
 = What is Devotionalium? =
 
-Devotionalium is a free service for reading daily verses from the bible.
-Check out devotionalium.com for more.
+Devotionalium is a free service for reading daily verses from the bible. Check out devotionalium.com for more.
 
 == Screenshots ==
 
