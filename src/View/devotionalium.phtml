@@ -9,7 +9,7 @@
         <?php else : ?>
             Devotionalium
         <?php endif; ?>
-        <?php echo __('for', 'devotionalium-wp'); ?>
+        <?php echo __('for', 'devotionalium'); ?>
         <?php echo date_i18n(
             get_option('date_format'),
             $block->getDevotionalium()->getDate()->getTimestamp()
