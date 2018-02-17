@@ -4,8 +4,8 @@ namespace Devotionalium\Model\Api;
 
 class Communicator
 {
-    const ENDPOINT_API_V1 = 'https://stage.devotionalium.com/api/v1';
-    const ENDPOINT_API_V2 = 'https://stage.devotionalium.com/api/v2';
+    const ENDPOINT_API_V1 = 'https://devotionalium.com/api/v1';
+    const ENDPOINT_API_V2 = 'https://devotionalium.com/api/v2';
 
     const PARAM_LANGUAGE = 'lang';
     const LANGAUGE_EN = 'en';

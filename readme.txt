@@ -2,8 +2,8 @@
 Contributors: maxmelzer
 Tags: bible, widget, sprituality, devotional
 Requires at least: 4.9
-Tested up to: 4.9.2
-Stable tag: 1.0
+Tested up to: 4.9.4
+Stable tag: 1.0.1
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -45,5 +45,7 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 
 == Changelog ==
 
+= 1.0.1 =
+* Switch to production api endpoint
 = 1.0 =
 * Initial release.
