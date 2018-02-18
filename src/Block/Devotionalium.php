@@ -3,6 +3,7 @@
 namespace Devotionalium\Block;
 
 use Devotionalium\ConfigAccessor;
+use Devotionalium\Plugin;
 
 /**
  * Class Devotionalium
@@ -68,5 +69,25 @@ class Devotionalium extends \Devotionalium\Block
     public function useLinks()
     {
         return $this->config->useOutgoingLinks();
+    }
+
+    /**
+     * @return string
+     */
+    public function getHeading()
+    {
+        if ($this->useLinks()) {
+            $parts[] = '<a href="https://devotionalium.com">'.__('Devotionalium', Plugin::WP_TEXTDOMAIN).'</a>';
+        } else {
+            $parts[] = __('Devotionalium', Plugin::WP_TEXTDOMAIN);
+        }
+        $parts[] = _x('for', 'for a date', Plugin::WP_TEXTDOMAIN);
+
+        $parts[] = date_i18n(
+            get_option('date_format'),
+            $this->getDevotionalium()->getDate()->getTimestamp()
+        );
+
+        return implode(' ', $parts);
     }
 }

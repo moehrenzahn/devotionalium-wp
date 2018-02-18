@@ -4,16 +4,7 @@
 </style>
 <div class="devotionalium-wp">
     <h2 class="title">
-        <?php if ($block->useLinks()) : ?>
-            <a href="https://devotionalium.com">Devotionalium</a>
-        <?php else : ?>
-            Devotionalium
-        <?php endif; ?>
-        <?php echo __('for', 'devotionalium'); ?>
-        <?php echo date_i18n(
-            get_option('date_format'),
-            $block->getDevotionalium()->getDate()->getTimestamp()
-        ); ?>
+        <?php echo $block->getHeading(); ?>
     </h2>
     <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
     <div class='<?php echo $verse->getBiblePart() === 0 ? 'ot' : 'nt' ?>'>

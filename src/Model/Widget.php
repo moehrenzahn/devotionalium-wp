@@ -5,6 +5,7 @@ namespace Devotionalium\Model;
 use Devotionalium\Block;
 use Devotionalium\Block\Devotionalium;
 use Devotionalium\ConfigAccessor;
+use Devotionalium\Plugin;
 use Devotionalium\WidgetBlock;
 
 class Widget extends \WP_Widget
@@ -34,7 +35,7 @@ class Widget extends \WP_Widget
         parent::__construct(
             'devotionalium',
             'Devotionalium',
-            ['description' => __('Displays daily bible verses from devotionalium.com', 'devotionalium')]
+            ['description' => __('Displays daily bible verses from devotionalium.com', Plugin::WP_TEXTDOMAIN)]
         );
     }
 

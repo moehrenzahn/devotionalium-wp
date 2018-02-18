@@ -4,16 +4,7 @@
     <?php echo $block->getCustomCss(); ?>
 </style>
 <?php echo $block->getBeforeTitle(); ?>
-    <?php if ($block->useLinks()) : ?>
-        <a href="https://devotionalium.com">Devotionalium</a>
-    <?php else : ?>
-        Devotionalium
-    <?php endif; ?>
-    <?php echo __('for', 'devotionalium'); ?>
-    <?php echo date_i18n(
-        get_option('date_format'),
-        $block->getDevotionalium()->getDate()->getTimestamp()
-    ); ?>
+<?php echo $block->getHeading(); ?>
 <?php echo $block->getAfterTitle(); ?>
 <div class="devotionalium-wp">
         <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
@@ -27,7 +18,6 @@
                 <p class="versetext">
                     <?php echo $verse->getText(); ?>
                     <div class="reference-link-container">
-                        <div class="reference-link-container">
                         <?php if ($block->useLinks()) : ?>
                             <a class='reference-link'
                                href="<?php echo $verse->getReadingUrl(); ?>">

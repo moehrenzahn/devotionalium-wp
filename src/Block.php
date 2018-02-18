@@ -91,4 +91,12 @@ class Block
         $block = $this; // make the block instance avaliable as $block in the template
         require(__DIR__.'/View/' . $path .'.phtml');
     }
+
+    /**
+     * @return string
+     */
+    public function getError()
+    {
+        return __('There was a problem loading today\'s verses.', Plugin::WP_TEXTDOMAIN);
+    }
 }

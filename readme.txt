@@ -1,9 +1,9 @@
 === Devotionalium for Wordpress ===
 Contributors: maxmelzer
-Tags: bible, widget, sprituality, devotional
+Tags: bible, devotion, watchword, losung, theology
 Requires at least: 4.9
 Tested up to: 4.9.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -45,7 +45,9 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixes for german translation.
 = 1.0.1 =
-* Switch to production api endpoint
+* Switch to production api endpoint.
 = 1.0 =
 * Initial release.

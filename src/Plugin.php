@@ -12,6 +12,8 @@ use Devotionalium\Model\Widget;
 
 class Plugin
 {
+    const WP_TEXTDOMAIN = 'devotionalium-wp';
+
     /**
      * @var Devotionalium
      */
@@ -77,47 +79,47 @@ class Plugin
         $generalSettings = [
             new Setting(
                 ConfigAccessor::KEY_IS_ORIGINAL_LANGUAGE,
-                __('Original languages', 'devotionalium'),
-                __('Display bible verses in original languages greek and hebrew as well.', 'devotionalium'),
+                __('Original languages', Plugin::WP_TEXTDOMAIN),
+                __('Display bible verses in original languages greek and hebrew as well.', Plugin::WP_TEXTDOMAIN),
                 new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
             ),
             new Setting\Select(
                 ConfigAccessor::KEY_VERSION,
-                __('Bible Version', 'devotionalium'),
-                __('Choose a bible version to display the bible verses in.', 'devotionalium'),
+                __('Bible Version', Plugin::WP_TEXTDOMAIN),
+                __('Choose a bible version to display the bible verses in.', Plugin::WP_TEXTDOMAIN),
                 $versionsArray,
                 new \Devotionalium\Block\Setting('/View/config/setting/select.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_OUTGOING_LINKS,
-                __('Outgoing links', 'devotionalium'),
-                __('Include hyperlinks to the full readings on devotionalium.com (recommended).', 'devotionalium'),
+                __('Outgoing links', Plugin::WP_TEXTDOMAIN),
+                __('Include hyperlinks to the full readings on devotionalium.com (recommended).', Plugin::WP_TEXTDOMAIN),
                 new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
             ),
         ];
         $experimentalSettings = [
             new Setting\Select(
                 ConfigAccessor::KEY_LANGUAGE,
-                __('Language', 'devotionalium'),
-                __('Choose a language for text displayed by the plugin.', 'devotionalium'),
+                __('Language', Plugin::WP_TEXTDOMAIN),
+                __('Choose a language for text displayed by the plugin.', Plugin::WP_TEXTDOMAIN),
                 [
-                    'en' => __('English', 'devotionalium'),
-                    'de' => __('German', 'devotionalium')
+                    'en' => __('English', Plugin::WP_TEXTDOMAIN),
+                    'de' => __('German', Plugin::WP_TEXTDOMAIN)
                 ],
                 new \Devotionalium\Block\Setting('/View/config/setting/select.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_DAY_OFFSET,
-                __('Day Offset', 'devotionalium'),
-                __('Offset the displayed Devotionalium by the given amount of days (-7 to 7).', 'devotionalium'),
+                __('Day Offset', Plugin::WP_TEXTDOMAIN),
+                __('Offset the displayed Devotionalium by the given amount of days (-7 to 7).', Plugin::WP_TEXTDOMAIN),
                 new \Devotionalium\Block\Setting('/View/config/setting/text.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_CUSTOM_CSS,
-                __('Custom CSS', 'devotionalium'),
+                __('Custom CSS', Plugin::WP_TEXTDOMAIN),
                 __(
                     'Define custom styles for displaying Devotionalium. Use class ".devotionalium-wp" to limit changes to the plugin',
-                    'devotionalium'
+                    Plugin::WP_TEXTDOMAIN
                 ),
                 new \Devotionalium\Block\Setting('/View/config/setting/textarea.phtml')
             ),
@@ -131,13 +133,13 @@ class Plugin
             ),
             new Section(
                 'experimental',
-                __('Experimental', 'devotionalium'),
+                __('Experimental', Plugin::WP_TEXTDOMAIN),
                 $experimentalSettings,
                 new \Devotionalium\Block\Section('/View/config/section.phtml'),
-                __("Don't touch this if you don't know what you are doing.", 'devotionalium')
+                __("Don't touch this if you don't know what you are doing.", Plugin::WP_TEXTDOMAIN)
             )
         ];
-        $configPage = new Settings(__('Devotionalium', 'devotionalium'), $sections);
+        $configPage = new Settings(__('Devotionalium', Plugin::WP_TEXTDOMAIN), $sections);
 
         return $configPage;
     }
@@ -174,7 +176,7 @@ class Plugin
     private function initLocalisation()
     {
         load_plugin_textdomain(
-            'devotionalium',
+            self::WP_TEXTDOMAIN,
             false,
             'devotionalium-wp/languages'
         );
