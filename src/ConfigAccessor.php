@@ -26,7 +26,7 @@ class ConfigAccessor
         self::KEY_IS_ORIGINAL_LANGUAGE => false,
         self::KEY_OUTGOING_LINKS => false,
         self::KEY_DAY_OFFSET => 0,
-        self::KEY_CUSTOM_CSS => '.devotionalium-wp {}',
+        self::KEY_CUSTOM_CSS => '.devotionalium {}',
     ];
 
     /**

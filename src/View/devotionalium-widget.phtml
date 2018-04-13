@@ -6,7 +6,7 @@
 <?php echo $block->getBeforeTitle(); ?>
 <?php echo $block->getHeading(); ?>
 <?php echo $block->getAfterTitle(); ?>
-<div class="devotionalium-wp">
+<div class="devotionalium">
         <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
             <div class='<?php echo $verse->getBiblePart() === 0 ? 'ot' : 'nt' ?>'>
                 <?php if ($block->showOriginalLanguages()) :?>

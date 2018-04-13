@@ -3,12 +3,12 @@
 Plugin Name:  Devotionalium
 Plugin URI:   https://devotionalium.com/wordpress/
 Description:  Include today's bible verses from devotionalium.com, with rich support for original languages.
-Version:      1.0.2
+Version:      1.0.3
 Author:       Max Melzer
 Author URI:   http://moehrenzahn.de/en/about
 License:      GPLv2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain:  devotionalium-wp
+Text Domain:  devotionalium
 Domain Path:  /languages
 */
 if (!defined('ABSPATH')) {

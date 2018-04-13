@@ -1,23 +1,23 @@
-.devotionalium-wp h2.title {
+.devotionalium h2.title {
 
 }
-.devotionalium-wp .versetext
+.devotionalium .versetext
 {
   font-style: italic;
 }
-.devotionalium-wp .versetext.original
+.devotionalium .versetext.original
 {
   font-style: normal;
 }
-.devotionalium-wp .reference-link-container
+.devotionalium .reference-link-container
 {
   text-align: right;
 }
-.devotionalium-wp .versetext.hebrew {
+.devotionalium .versetext.hebrew {
   font-family: 'Times New Roman', Times, serif;
   font-size: 150%;
   line-height: 1.2;
 }
-.devotionalium-wp .versetext.greek {
+.devotionalium .versetext.greek {
   font-size: 1.1em;
 }

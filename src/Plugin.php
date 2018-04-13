@@ -12,7 +12,7 @@ use Devotionalium\Model\Widget;
 
 class Plugin
 {
-    const WP_TEXTDOMAIN = 'devotionalium-wp';
+    const WP_TEXTDOMAIN = 'devotionalium';
 
     /**
      * @var Devotionalium
@@ -53,7 +53,7 @@ class Plugin
                 'registerSettings'
             );
             $this->loader->addFilter(
-                "plugin_action_links_devotionalium-wp/devotionalium-wp.php",
+                "plugin_action_links_devotionalium/devotionalium.php",
                 $configPage,
                 'addConfigLinkToPluginPage'
             );
@@ -118,7 +118,7 @@ class Plugin
                 ConfigAccessor::KEY_CUSTOM_CSS,
                 __('Custom CSS', Plugin::WP_TEXTDOMAIN),
                 __(
-                    'Define custom styles for displaying Devotionalium. Use class ".devotionalium-wp" to limit changes to the plugin',
+                    'Define custom styles for displaying Devotionalium. Use class ".devotionalium" to limit changes to the plugin.',
                     Plugin::WP_TEXTDOMAIN
                 ),
                 new \Devotionalium\Block\Setting('/View/config/setting/textarea.phtml')
@@ -178,7 +178,7 @@ class Plugin
         load_plugin_textdomain(
             self::WP_TEXTDOMAIN,
             false,
-            'devotionalium-wp/languages'
+            'devotionalium/languages'
         );
     }
 

@@ -3,7 +3,6 @@
 namespace Devotionalium\Model;
 
 use Devotionalium\Block;
-use Devotionalium\Block\Devotionalium;
 use Devotionalium\ConfigAccessor;
 use Devotionalium\Plugin;
 use Devotionalium\WidgetBlock;
@@ -44,6 +43,7 @@ class Widget extends \WP_Widget
      *
      * @param array $args
      * @param array $instance
+     * @throws \Exception
      */
     public function widget($args, $instance)
     {
@@ -59,7 +59,7 @@ class Widget extends \WP_Widget
             );
             echo $block->getHtml();
         } catch (\Exception $e) {
-            error_log($e->getMessage());
+            error_log('Error loading Devotionalium WP Widget: ' . $e->getMessage());
             $block = new WidgetBlock(
                 '/View/error-widget.phtml',
                 $args['before_widget'],

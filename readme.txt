@@ -2,8 +2,8 @@
 Contributors: maxmelzer
 Tags: bible, devotion, watchword, losung, theology
 Requires at least: 4.9
-Tested up to: 4.9.4
-Stable tag: 1.0.2
+Tested up to: 4.9.5
+Stable tag: 1.0.3
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -28,7 +28,7 @@ It offers rich configuration options for language, bible version and optional di
 
 This section describes how to install the plugin and get it working.
 
-1. Upload the plugin files to the `/wp-content/plugins/devotionalium-wp` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/devotionalium` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress
 1. Use the Settings->Devotionalium screen to configure the plugin
 
@@ -45,6 +45,8 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 
 == Changelog ==
 
+= 1.0.3 =
+* adjusted translation namespace, removed local translation
 = 1.0.2 =
 * Fixes for german translation.
 = 1.0.1 =
