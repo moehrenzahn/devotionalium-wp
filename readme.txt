@@ -3,7 +3,7 @@ Contributors: maxmelzer
 Tags: bible, devotion, watchword, losung, theology
 Requires at least: 4.9
 Tested up to: 4.9.5
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -45,6 +45,8 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 
 == Changelog ==
 
+= 1.0.4 =
+* Fixed a problem with nested <p> tags in templates
 = 1.0.3 =
 * adjusted translation namespace, removed local translation
 = 1.0.2 =
