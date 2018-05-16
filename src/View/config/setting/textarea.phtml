@@ -3,7 +3,6 @@
 <textarea rows="10"
           cols="50"
           name="<?php echo $setting->getId(); ?>"
-          type="text"
           id="<?php echo $setting->getId(); ?>"
 ><?php echo esc_textarea($setting->getValue()); ?></textarea>
 <p class="description"><?php echo $setting->getDescription(); ?></p>

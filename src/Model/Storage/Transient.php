@@ -13,7 +13,7 @@ class Transient
     /**
      * @param string $index
      * @param mixed $object
-     * @param int $expiration (default 48 hours)
+     * @param float|int $expiration (default 48 hours)
      */
     public function save($index, $object, $expiration = HOUR_IN_SECONDS*48)
     {

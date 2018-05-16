@@ -32,14 +32,6 @@ class Settings extends Block
     }
 
     /**
-     * @return Section[]
-     */
-    public function getSections()
-    {
-        return $this->sections;
-    }
-
-    /**
      * @return string
      */
     public function getPage()
