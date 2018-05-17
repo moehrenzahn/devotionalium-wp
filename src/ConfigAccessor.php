@@ -101,7 +101,7 @@ class ConfigAccessor
      */
     private function getDefaultValue($key)
     {
-        if (isset(self::DEFAULTS[$key])) {
+        if (null !== self::DEFAULTS[$key]) {
             $value = self::DEFAULTS[$key];
         } elseif ($key === self::KEY_LANGUAGE) {
             $value = $this->getDefaultLanguage();
