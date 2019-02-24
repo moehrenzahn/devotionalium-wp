@@ -2,7 +2,7 @@
 Contributors: maxmelzer
 Tags: bible, devotion, watchword, losung, theology
 Requires at least: 4.9
-Tested up to: 4.9.5
+Tested up to: 5.1.0
 Stable tag: 1.0.6
 Requires PHP: 5.6
 Text Domain:  devotionalium
