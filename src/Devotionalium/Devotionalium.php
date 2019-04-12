@@ -88,10 +88,12 @@ class Devotionalium
         if (!isset($this->config) || !isset($this->api)) {
             throw new \Exception('Instance is not equipped for lazy-loading');
         }
+        $offset = $this->config->getDayOffset();
+        $date = date('Y-m-d', time() + (int)$offset * 86400);
         $devotionalium = $this->api->loadDevotionalium(
             $this->config->getVersion(),
             $this->config->getLanguage(),
-            $this->config->getDayOffset()
+            $date
         );
         $this->setDate($devotionalium->getDate());
         $this->setVerses($devotionalium->getVerses());

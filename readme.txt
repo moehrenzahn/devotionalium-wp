@@ -2,8 +2,8 @@
 Contributors: maxmelzer
 Tags: bible, devotion, watchword, losung, theology
 Requires at least: 4.9
-Tested up to: 5.1.0
-Stable tag: 1.0.6
+Tested up to: 5.1.1
+Stable tag: 1.1.0
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -44,6 +44,9 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 2. The Devotionalium configuration area.
 
 == Changelog ==
+= 1.1.0 =
+* Add ability to choose an API endpoint url
+* request specific days from the API instead of offsets
 = 1.0.6 =
 * Fixed a bug that sometimes prohibited the activation of the plugin
 = 1.0.5 =

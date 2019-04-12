@@ -1,0 +1,8 @@
+<?php /** @var \Devotionalium\Block\Setting $block */ ?>
+<?php $setting = $block->getSetting(); ?>
+<input name="<?php echo $setting->getId(); ?>"
+       style="width: 464px"
+       type="text"
+       id="<?php echo $setting->getId(); ?>"
+       value="<?php echo $setting->getValue(); ?>">
+<p class="description"><?php echo $setting->getDescription(); ?></p>

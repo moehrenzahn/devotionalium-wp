@@ -21,27 +21,31 @@ class DevotionaliumApi
 
     /**
      * DevotionaliumApi constructor.
+     *
+     * @param string $endpointUrl
      */
-    public function __construct()
+    public function __construct($endpointUrl)
     {
-        $this->communicator = new Communicator(self::API_VERSION);
+        $this->communicator = new Communicator(
+            implode('/', [$endpointUrl, self::API_VERSION])
+        );
         $this->transient = new Transient();
     }
 
     /**
      * @param string $version
      * @param string $language
-     * @param int $dayOffset
+     * @param string $date
      * @return Devotionalium
      */
     public function loadDevotionalium(
         $version,
         $language,
-        $dayOffset
+        $date
     ) {
         $index = implode(
             '-',
-            [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $dayOffset, date('Y-m-d')]
+            [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $date]
         );
         if ($cached = $this->transient->load($index)) {
             return $cached;
@@ -50,7 +54,7 @@ class DevotionaliumApi
         $response = $this->communicator->get([
             Communicator::PARAM_VERSION => $version,
             Communicator::PARAM_LANGUAGE => $language,
-            Communicator::PARAM_DAYOFFSET => $dayOffset
+            Communicator::PARAM_DATE => $date
         ]);
 
         $verses = [];
@@ -77,12 +81,14 @@ class DevotionaliumApi
         $devotionalium->setDate($date);
 
         $this->transient->save($index, $devotionalium);
+
         return $devotionalium;
     }
 
     /**
-     * @param $language
+     * @param string $language
      * @return Version[]
+     * @throws \Exception
      */
     public function loadVersions($language = 'en')
     {

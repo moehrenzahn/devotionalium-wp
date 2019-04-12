@@ -1,6 +1,8 @@
 <?php
 namespace Devotionalium;
 
+use Devotionalium\Model\Api\Communicator;
+
 /**
  * Class ConfigAccessor
  *
@@ -22,11 +24,14 @@ class ConfigAccessor
 
     const KEY_CUSTOM_CSS = self::CONFIG_PREFIX.'customCss';
 
+    const KEY_ENDPOINT_URL = self::CONFIG_PREFIX.'endpointUrl';
+
     const DEFAULTS = [
         self::KEY_IS_ORIGINAL_LANGUAGE => false,
         self::KEY_OUTGOING_LINKS => false,
         self::KEY_DAY_OFFSET => 0,
         self::KEY_CUSTOM_CSS => '.devotionalium {}',
+        self::KEY_ENDPOINT_URL => Communicator::DEFAULT_API_URL
     ];
 
     /**
@@ -75,6 +80,14 @@ class ConfigAccessor
     public function getCustomCss()
     {
         return $this->getConfigValue(self::KEY_CUSTOM_CSS);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndpointUrl()
+    {
+        return $this->getConfigValue(self::KEY_ENDPOINT_URL);
     }
 
     /**

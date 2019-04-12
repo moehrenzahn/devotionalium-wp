@@ -41,7 +41,7 @@ class Plugin
     {
         $this->loader = new Loader();
         $this->config = new ConfigAccessor();
-        $this->api = new DevotionaliumApi();
+        $this->api = new DevotionaliumApi($this->config->getEndpointUrl());
 
         $this->initLocalisation();
 
@@ -71,7 +71,8 @@ class Plugin
      */
     public function initConfigPage()
     {
-        $versions = (new DevotionaliumApi())->loadVersions();
+        $communicator = new DevotionaliumApi($this->config->getEndpointUrl());
+        $versions = $communicator->loadVersions();
         $versionsArray = [];
         foreach ($versions as $version) {
             $versionsArray[$version->getId()] = $version->getName();
@@ -98,6 +99,12 @@ class Plugin
             ),
         ];
         $experimentalSettings = [
+            new Setting(
+                ConfigAccessor::KEY_ENDPOINT_URL,
+                __('Endpoint URL', Plugin::WP_TEXTDOMAIN),
+                __('Choose the API endpoint URL to request Devotionalium from. Default: "https://devotionalium.com/api"', Plugin::WP_TEXTDOMAIN),
+                new \Devotionalium\Block\Setting('/View/config/setting/text-wide.phtml')
+            ),
             new Setting\Select(
                 ConfigAccessor::KEY_LANGUAGE,
                 __('Language', Plugin::WP_TEXTDOMAIN),

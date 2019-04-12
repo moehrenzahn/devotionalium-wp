@@ -4,8 +4,10 @@ namespace Devotionalium\Model\Api;
 
 class Communicator
 {
-    const ENDPOINT_API_V1 = 'https://devotionalium.com/api/v1';
-    const ENDPOINT_API_V2 = 'https://devotionalium.com/api/v2';
+    const DEFAULT_API_URL = 'https://devotionalium.com/api';
+
+    const ENDPOINT_API_V1 = 'v1';
+    const ENDPOINT_API_V2 = 'v2';
 
     const PARAM_LANGUAGE = 'lang';
     const LANGAUGE_EN = 'en';
@@ -18,6 +20,7 @@ class Communicator
     const VERSION_LUTHER = 'lut';
     const VERSION_SCHLACHTER = 'schla';
 
+    const PARAM_DATE = 'date';
     const PARAM_DAYOFFSET = 'dayOffset';
 
     const ACTION_VERSIONS = 'versions';
@@ -44,18 +47,19 @@ class Communicator
     }
 
     /**
-     * @param array $parameters
+     * @param string[] $parameters
      * @param string $action
-     * @return mixed[]
+     * @return string[]
+     * @throws \Exception
      */
     public function get(array $parameters, $action = '')
     {
         if (in_array($action, self::ACTIONS)) {
-            $action = '/'.$action;
+            $action = '/' . $action;
         } else {
             $action = '';
         }
-        $url = $this->endpoint.$action.'?'.http_build_query($parameters);
+        $url = $this->endpoint . $action . '?' . http_build_query($parameters);
         $response = $this->makeRequest($url);
 
         return $response;
