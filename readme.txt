@@ -3,7 +3,7 @@ Contributors: maxmelzer
 Tags: bible, quran, torah, devotion, watchword, losung, theology
 Requires at least: 4.9
 Tested up to: 5.1.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
