@@ -93,7 +93,8 @@ class Devotionalium
         $devotionalium = $this->api->loadDevotionalium(
             $this->config->getVersion(),
             $this->config->getLanguage(),
-            $date
+            $date,
+            $this->config->isShowQuran()
         );
         $this->setDate($devotionalium->getDate());
         $this->setVerses($devotionalium->getVerses());

@@ -81,20 +81,29 @@ class Plugin
             new Setting(
                 ConfigAccessor::KEY_IS_ORIGINAL_LANGUAGE,
                 __('Original languages', Plugin::WP_TEXTDOMAIN),
-                __('Display bible verses in original languages greek and hebrew as well.', Plugin::WP_TEXTDOMAIN),
+                __('Display verses from the Torah, the New Testament, and the Quran in original languages greek, hebrew, and arabic as well.', Plugin::WP_TEXTDOMAIN),
+                new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
+            ),
+            new Setting(
+                ConfigAccessor::KEY_SHOW_QURAN,
+                __('Display Quran verse', Plugin::WP_TEXTDOMAIN),
+                __('Display verses from the Quran.', Plugin::WP_TEXTDOMAIN),
                 new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
             ),
             new Setting\Select(
                 ConfigAccessor::KEY_VERSION,
                 __('Bible Version', Plugin::WP_TEXTDOMAIN),
-                __('Choose a bible version to display the bible verses in.', Plugin::WP_TEXTDOMAIN),
+                __('Choose a bible version to display Torah and New Testament verses in.', Plugin::WP_TEXTDOMAIN),
                 $versionsArray,
                 new \Devotionalium\Block\Setting('/View/config/setting/select.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_OUTGOING_LINKS,
                 __('Outgoing links', Plugin::WP_TEXTDOMAIN),
-                __('Include hyperlinks to the full readings on devotionalium.com (recommended).', Plugin::WP_TEXTDOMAIN),
+                __(
+                    'Include hyperlinks to the full readings on devotionalium.com (recommended).',
+                    Plugin::WP_TEXTDOMAIN
+                ),
                 new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
             ),
         ];
@@ -102,7 +111,10 @@ class Plugin
             new Setting(
                 ConfigAccessor::KEY_ENDPOINT_URL,
                 __('Endpoint URL', Plugin::WP_TEXTDOMAIN),
-                __('Choose the API endpoint URL to request Devotionalium from. Default: "https://devotionalium.com/api"', Plugin::WP_TEXTDOMAIN),
+                __(
+                    'Choose the API endpoint URL to use. Default: "https://devotionalium.com/api"',
+                   Plugin::WP_TEXTDOMAIN
+                ),
                 new \Devotionalium\Block\Setting('/View/config/setting/text-wide.phtml')
             ),
             new Setting\Select(

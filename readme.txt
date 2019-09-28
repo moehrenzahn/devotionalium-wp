@@ -1,6 +1,6 @@
-=== Devotionalium for Wordpress ===
+=== Devotionalium Daily Verses for Wordpress ===
 Contributors: maxmelzer
-Tags: bible, devotion, watchword, losung, theology
+Tags: bible, quran, torah, devotion, watchword, losung, theology
 Requires at least: 4.9
 Tested up to: 5.1.1
 Stable tag: 1.1.0
@@ -10,11 +10,11 @@ Domain Path:  /languages
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Include today's bible verses from devotionalium.com, with rich support for original languages.
+Include today's verses from devotionalium.com, with rich support for original languages.
 
 == Description ==
 
-Devotionalium for Wordpress is a plugin that utilises the [Devotionalium.com](https://devotionalium.com/api/docs) API to display today's featured bible verses from [Devotionalium.com](https://devotionalium.com) on your Wordpress page.
+Devotionalium Daily Verses for Wordpress is a plugin that uses the [Devotionalium.com](https://devotionalium.com/api/docs) API to display today's featured verses from [Devotionalium.com](https://devotionalium.com) on your Wordpress page.
 
 You can use it as
 
@@ -36,7 +36,7 @@ This section describes how to install the plugin and get it working.
 
 = What is Devotionalium? =
 
-Devotionalium is a free service for reading daily verses from the bible. Check out devotionalium.com for more.
+Devotionalium is a free service for reading daily verses from the Torah, the New Testament, and the Quran. Check out devotionalium.com for more.
 
 == Screenshots ==
 
@@ -44,6 +44,9 @@ Devotionalium is a free service for reading daily verses from the bible. Check o
 2. The Devotionalium configuration area.
 
 == Changelog ==
+= 1.2.0 =
+* Add setting to toggle Quran display
+* Fixes and updates for new API format
 = 1.1.0 =
 * Add ability to choose an API endpoint url
 * request specific days from the API instead of offsets

@@ -5,9 +5,9 @@ namespace Devotionalium\Model\Api;
 class Verse
 {
     /**
-     * @var int (0|1)
+     * @var int (0|1|2)
      */
-    private $biblePart;
+    private $collection;
 
     /**
      * @var string
@@ -57,19 +57,19 @@ class Verse
     /**
      * Verse constructor.
      *
-     * @param $biblePart
-     * @param $book
-     * @param $bookNumber
-     * @param $chapter
-     * @param $text
-     * @param $textOriginal
-     * @param array $verses
-     * @param $versionName
-     * @param $reference
-     * @param $readingUrl
+     * @param int $collection
+     * @param string $book
+     * @param int $bookNumber
+     * @param int $chapter
+     * @param string $text
+     * @param string $textOriginal
+     * @param string[] $verses
+     * @param string $versionName
+     * @param string $reference
+     * @param string $readingUrl
      */
     public function __construct(
-        $biblePart,
+        $collection,
         $book,
         $bookNumber,
         $chapter,
@@ -80,7 +80,7 @@ class Verse
         $reference,
         $readingUrl
     ) {
-        $this->biblePart = $biblePart;
+        $this->collection = $collection;
         $this->book = $book;
         $this->bookNumber = $bookNumber;
         $this->chapter = $chapter;
@@ -95,9 +95,9 @@ class Verse
     /**
      * @return int
      */
-    public function getBiblePart()
+    public function getCollection()
     {
-        return $this->biblePart;
+        return $this->collection;
     }
 
     /**

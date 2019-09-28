@@ -33,8 +33,11 @@ class Widget extends \WP_Widget
         $this->devotionalium = $devotionalium;
         parent::__construct(
             'devotionalium',
-            'Devotionalium',
-            ['description' => __('Displays daily bible verses from devotionalium.com', Plugin::WP_TEXTDOMAIN)]
+            'Devotionalium Daily Verses',
+            ['description' => __(
+                'Displays daily verses from the Torah, the New Testament, and the Quran from devotionalium.com',
+                Plugin::WP_TEXTDOMAIN
+            )]
         );
     }
 

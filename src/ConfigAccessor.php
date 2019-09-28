@@ -26,12 +26,15 @@ class ConfigAccessor
 
     const KEY_ENDPOINT_URL = self::CONFIG_PREFIX.'endpointUrl';
 
+    const KEY_SHOW_QURAN = self::CONFIG_PREFIX.'showQuran';
+
     const DEFAULTS = [
         self::KEY_IS_ORIGINAL_LANGUAGE => false,
         self::KEY_OUTGOING_LINKS => false,
         self::KEY_DAY_OFFSET => 0,
         self::KEY_CUSTOM_CSS => '.devotionalium {}',
-        self::KEY_ENDPOINT_URL => Communicator::DEFAULT_API_URL
+        self::KEY_ENDPOINT_URL => Communicator::DEFAULT_API_URL,
+        self::KEY_SHOW_QURAN => false,
     ];
 
     /**
@@ -88,6 +91,14 @@ class ConfigAccessor
     public function getEndpointUrl()
     {
         return $this->getConfigValue(self::KEY_ENDPOINT_URL);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowQuran()
+    {
+        return (bool)$this->getConfigValue(self::KEY_SHOW_QURAN);
     }
 
     /**

@@ -36,19 +36,21 @@ class DevotionaliumApi
      * @param string $version
      * @param string $language
      * @param string $date
+     * @param bool $showQuran
      * @return Devotionalium
      */
     public function loadDevotionalium(
         $version,
         $language,
-        $date
+        $date,
+        $showQuran
     ) {
         $index = implode(
             '-',
             [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $date]
         );
         if ($cached = $this->transient->load($index)) {
-            return $cached;
+            //return $cached;
         }
 
         $response = $this->communicator->get([
@@ -59,20 +61,32 @@ class DevotionaliumApi
 
         $verses = [];
         foreach ($response as $key => $item) {
-            if (isset($item['text'])) {
-                $verses[] = new Verse(
-                    $item['biblePart'],
-                    $item['book'],
-                    $item['bookNumber'],
-                    $item['chapter'],
-                    $item['text'],
-                    $item['textOriginal'],
-                    $item['verses'],
-                    $item['version']['name'],
-                    $item['reference'],
-                    $item['readingUrl']
-                );
+            if (!isset($item['text'])) {
+                continue;
             }
+            if (isset($item['collection'])) {
+                $collection = $item['collection'];
+            } elseif (isset($item['biblePart'])) {
+                $collection = $item['biblePart'];
+            } else {
+                $collection = null;
+            }
+            if (!$showQuran && $collection === 2) {
+                continue;
+            }
+
+            $verses[] = new Verse(
+                $collection,
+                $item['book'],
+                $item['bookNumber'],
+                $item['chapter'],
+                $item['text'],
+                $item['textOriginal'],
+                $item['verses'],
+                $item['version']['name'],
+                $item['reference'],
+                $item['readingUrl']
+            );
         }
         $date = \DateTime::createFromFormat('Y-m-d', $response['date']);
 

@@ -49,7 +49,7 @@ class Communicator
     /**
      * @param string[] $parameters
      * @param string $action
-     * @return string[]
+     * @return mixed[]
      * @throws \Exception
      */
     public function get(array $parameters, $action = '')

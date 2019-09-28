@@ -1,6 +1,3 @@
-.devotionalium h2.title {
-
-}
 .devotionalium .versetext
 {
   font-style: italic;
@@ -13,9 +10,11 @@
 {
   text-align: right;
 }
-.devotionalium .versetext.hebrew {
+.devotionalium .versetext.hebrew, .devotionalium .versetext.arabic {
   font-family: 'Times New Roman', Times, serif;
   font-size: 150%;
+}
+.devotionalium .versetext.hebrew {
   line-height: 1.2;
 }
 .devotionalium .versetext.greek {

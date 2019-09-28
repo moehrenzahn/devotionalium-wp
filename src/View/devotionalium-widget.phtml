@@ -8,25 +8,38 @@
 <?php echo $block->getAfterTitle(); ?>
 <div class="devotionalium">
     <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
-        <div class='<?php echo $verse->getBiblePart() === 0 ? 'ot' : 'nt' ?>'>
+        <?php if ($verse->getCollection() === 0) {
+            $collection = 'ot';
+            $language = 'hebrew';
+            $dir = 'rtl';
+        } elseif ($verse->getCollection() === 1) {
+            $collection = 'nt';
+            $language = 'greek';
+            $dir = 'ltr';
+        } elseif ($verse->getCollection() === 2) {
+            $collection = 'quran';
+            $language = 'arabic';
+            $dir = 'rtl';
+        } ?>
+        <div class='<?php echo $collection ?>'>
             <?php if ($block->showOriginalLanguages()) : ?>
-                <p class="versetext original <?php echo $verse->getBiblePart() == 0 ? 'hebrew' : 'greek'; ?>"
-                    <?php echo $verse->getBiblePart() === 0 ? 'dir="rtl"' : ''; ?>>
+                <p class="versetext original <?php echo $language; ?>"
+                   dir="<?php echo $dir; ?>">
                     <?php echo $verse->getTextOriginal(); ?>
                 </p>
             <?php endif; ?>
             <p class="versetext">
                 <?php echo $verse->getText(); ?>
             </p>
-            <div class="reference-link-container">
+            <p class="reference-link-container">
                 <?php if ($block->useLinks()) : ?>
                     <a class='reference-link'
                        href="<?php echo $verse->getReadingUrl(); ?>">
                         <?php echo $verse->getReferenceString(); ?></a>
                 <?php else : ?>
-                    <p class='reference-link'><?php echo $verse->getReferenceString(); ?></p>
+                    <span class='reference-link'><?php echo $verse->getReferenceString(); ?></span>
                 <?php endif; ?>
-            </div>
+            </p>
         </div>
     <?php endforeach; ?>
 </div>
