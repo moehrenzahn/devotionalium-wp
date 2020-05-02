@@ -44,6 +44,7 @@ class Devotionalium
 
     /**
      * @return Verse[]
+     * @throws \Exception
      */
     public function getVerses()
     {
@@ -55,6 +56,7 @@ class Devotionalium
 
     /**
      * @return \DateTime
+     * @throws \Exception
      */
     public function getDate()
     {
@@ -82,6 +84,8 @@ class Devotionalium
 
     /**
      * Lazily load content from api.
+     *
+     * @throws \Exception
      */
     private function load()
     {

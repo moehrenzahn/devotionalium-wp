@@ -3,7 +3,6 @@
 namespace Devotionalium\Block;
 
 use Devotionalium\Block;
-use Devotionalium\Config\Section;
 
 class Settings extends Block
 {

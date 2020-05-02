@@ -2,8 +2,8 @@
 Contributors: maxmelzer
 Tags: bible, quran, torah, devotion, watchword, losung, theology
 Requires at least: 4.9
-Tested up to: 5.1.1
-Stable tag: 1.2.0
+Tested up to: 5.3.2
+Stable tag: 1.2.1
 Requires PHP: 5.6
 Text Domain:  devotionalium
 Domain Path:  /languages
@@ -44,6 +44,9 @@ Devotionalium is a free service for reading daily verses from the Torah, the New
 2. The Devotionalium configuration area.
 
 == Changelog ==
+= 1.2.1 =
+* Add error handling in case Devotionalium API is not available
+* Fixed issue where Devotionalium Verses were not read from cache properly
 = 1.2.0 =
 * Add setting to toggle Quran display
 * Fixes and updates for new API format

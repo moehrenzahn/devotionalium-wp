@@ -1,4 +1,9 @@
-<?php /** @var \Devotionalium\Block\Devotionalium $block */ ?>
+<?php
+use Devotionalium\Block\Devotionalium;
+
+/** @var Devotionalium $block */
+?>
+
 <style>
     <?php echo $block->getCustomCss(); ?>
 </style>
@@ -6,7 +11,13 @@
     <h2 class="title">
         <?php echo $block->getHeading(); ?>
     </h2>
-    <?php foreach ($block->getDevotionalium()->getVerses() as $verse) : ?>
+    <?php
+    try {
+        $verses = $block->getDevotionalium()->getVerses();
+    } catch (Exception $e) {
+        $verses = [];
+    }
+    foreach ($verses as $verse) : ?>
         <?php if ($verse->getCollection() === 0) {
             $collection = 'ot';
             $language = 'hebrew';

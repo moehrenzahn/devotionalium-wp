@@ -4,6 +4,7 @@ namespace Devotionalium\Model\Api;
 
 use Devotionalium\Devotionalium\Devotionalium;
 use Devotionalium\Model\Storage\Transient;
+use Exception;
 
 class DevotionaliumApi
 {
@@ -20,8 +21,6 @@ class DevotionaliumApi
     private $transient;
 
     /**
-     * DevotionaliumApi constructor.
-     *
      * @param string $endpointUrl
      */
     public function __construct($endpointUrl)
@@ -38,6 +37,7 @@ class DevotionaliumApi
      * @param string $date
      * @param bool $showQuran
      * @return Devotionalium
+     * @throws Exception
      */
     public function loadDevotionalium(
         $version,
@@ -50,7 +50,7 @@ class DevotionaliumApi
             [Communicator::ACTION_DEVOTIONALIUM, $version, $language, $date]
         );
         if ($cached = $this->transient->load($index)) {
-            //return $cached;
+            return $cached;
         }
 
         $response = $this->communicator->get([
@@ -102,11 +102,11 @@ class DevotionaliumApi
     /**
      * @param string $language
      * @return Version[]
-     * @throws \Exception
+     * @throws Exception
      */
     public function loadVersions($language = 'en')
     {
-        $index = Communicator::ACTION_VERSIONS.'-'.$language;
+        $index = Communicator::ACTION_VERSIONS . '-' . $language;
 
         if ($cached = $this->transient->load($index)) {
             return $cached;

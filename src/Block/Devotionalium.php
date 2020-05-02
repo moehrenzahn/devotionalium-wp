@@ -2,15 +2,13 @@
 
 namespace Devotionalium\Block;
 
+use DateTime;
+use Devotionalium\Block;
 use Devotionalium\ConfigAccessor;
 use Devotionalium\Plugin;
+use Exception;
 
-/**
- * Class Devotionalium
- *
- * @package Devotionalium\Block
- */
-class Devotionalium extends \Devotionalium\Block
+class Devotionalium extends Block
 {
     /**
      * @var \Devotionalium\Devotionalium\Devotionalium
@@ -23,8 +21,6 @@ class Devotionalium extends \Devotionalium\Block
     private $config;
 
     /**
-     * Devotionalium constructor.
-     *
      * @param ConfigAccessor $config
      * @param string $templatePath
      * @param \Devotionalium\Devotionalium\Devotionalium $devotionalium
@@ -83,9 +79,15 @@ class Devotionalium extends \Devotionalium\Block
         }
         $parts[] = _x('for', 'for a date', Plugin::WP_TEXTDOMAIN);
 
+        try {
+            $date = $this->getDevotionalium()->getDate();
+        } catch (Exception $exception) {
+            $date = new DateTime();
+        }
+
         $parts[] = date_i18n(
             get_option('date_format'),
-            $this->getDevotionalium()->getDate()->getTimestamp()
+            $date->getTimestamp()
         );
 
         return implode(' ', $parts);

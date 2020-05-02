@@ -9,6 +9,7 @@ use Devotionalium\Devotionalium\Devotionalium;
 use Devotionalium\Model\Api\DevotionaliumApi;
 use Devotionalium\Model\ShortCode;
 use Devotionalium\Model\Widget;
+use Exception;
 
 class Plugin
 {
@@ -72,30 +73,41 @@ class Plugin
     public function initConfigPage()
     {
         $communicator = new DevotionaliumApi($this->config->getEndpointUrl());
-        $versions = $communicator->loadVersions();
         $versionsArray = [];
-        foreach ($versions as $version) {
-            $versionsArray[$version->getId()] = $version->getName();
+        try {
+            $versions = $communicator->loadVersions();
+            foreach ($versions as $version) {
+                $versionsArray[$version->getId()] = $version->getName();
+            }
+        } catch (Exception $exception) {
+            global $pagenow;
+            if ($pagenow === 'options-general.php' && $_GET['page'] === 'devotionalium') {
+                $this->loader->addAction(
+                    'admin_notices',
+                    $this,
+                    'getNoConnectionErrorNotice'
+                );
+            }
         }
         $generalSettings = [
             new Setting(
                 ConfigAccessor::KEY_IS_ORIGINAL_LANGUAGE,
                 __('Original languages', Plugin::WP_TEXTDOMAIN),
                 __('Display verses from the Torah, the New Testament, and the Quran in original languages greek, hebrew, and arabic as well.', Plugin::WP_TEXTDOMAIN),
-                new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
+                new Block\Setting('/View/config/setting/boolean.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_SHOW_QURAN,
                 __('Display Quran verse', Plugin::WP_TEXTDOMAIN),
                 __('Display verses from the Quran.', Plugin::WP_TEXTDOMAIN),
-                new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
+                new Block\Setting('/View/config/setting/boolean.phtml')
             ),
             new Setting\Select(
                 ConfigAccessor::KEY_VERSION,
                 __('Bible Version', Plugin::WP_TEXTDOMAIN),
                 __('Choose a bible version to display Torah and New Testament verses in.', Plugin::WP_TEXTDOMAIN),
                 $versionsArray,
-                new \Devotionalium\Block\Setting('/View/config/setting/select.phtml')
+                new Block\Setting('/View/config/setting/select.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_OUTGOING_LINKS,
@@ -104,7 +116,7 @@ class Plugin
                     'Include hyperlinks to the full readings on devotionalium.com (recommended).',
                     Plugin::WP_TEXTDOMAIN
                 ),
-                new \Devotionalium\Block\Setting('/View/config/setting/boolean.phtml')
+                new Block\Setting('/View/config/setting/boolean.phtml')
             ),
         ];
         $experimentalSettings = [
@@ -115,7 +127,7 @@ class Plugin
                     'Choose the API endpoint URL to use. Default: "https://devotionalium.com/api"',
                    Plugin::WP_TEXTDOMAIN
                 ),
-                new \Devotionalium\Block\Setting('/View/config/setting/text-wide.phtml')
+                new Block\Setting('/View/config/setting/text-wide.phtml')
             ),
             new Setting\Select(
                 ConfigAccessor::KEY_LANGUAGE,
@@ -125,13 +137,13 @@ class Plugin
                     'en' => __('English', Plugin::WP_TEXTDOMAIN),
                     'de' => __('German', Plugin::WP_TEXTDOMAIN)
                 ],
-                new \Devotionalium\Block\Setting('/View/config/setting/select.phtml')
+                new Block\Setting('/View/config/setting/select.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_DAY_OFFSET,
                 __('Day Offset', Plugin::WP_TEXTDOMAIN),
                 __('Offset the displayed Devotionalium by the given amount of days (-7 to 7).', Plugin::WP_TEXTDOMAIN),
-                new \Devotionalium\Block\Setting('/View/config/setting/text.phtml')
+                new Block\Setting('/View/config/setting/text.phtml')
             ),
             new Setting(
                 ConfigAccessor::KEY_CUSTOM_CSS,
@@ -140,7 +152,7 @@ class Plugin
                     'Define custom styles for displaying Devotionalium. Use class ".devotionalium" to limit changes to the plugin.',
                     Plugin::WP_TEXTDOMAIN
                 ),
-                new \Devotionalium\Block\Setting('/View/config/setting/textarea.phtml')
+                new Block\Setting('/View/config/setting/textarea.phtml')
             ),
         ];
         $sections = [
@@ -148,13 +160,13 @@ class Plugin
                 'general',
                 '',
                 $generalSettings,
-                new \Devotionalium\Block\Section('/View/config/section.phtml')
+                new Block\Section('/View/config/section.phtml')
             ),
             new Section(
                 'experimental',
                 __('Experimental', Plugin::WP_TEXTDOMAIN),
                 $experimentalSettings,
-                new \Devotionalium\Block\Section('/View/config/section.phtml'),
+                new Block\Section('/View/config/section.phtml'),
                 __("Don't touch this if you don't know what you are doing.", Plugin::WP_TEXTDOMAIN)
             )
         ];
@@ -199,6 +211,12 @@ class Plugin
             false,
             'devotionalium/languages'
         );
+    }
+
+    public function getNoConnectionErrorNotice() {
+        echo '<div class="notice notice-error"><p>';
+        echo __('The Devotionalium API could not be reached. Please try again later.' , Plugin::WP_TEXTDOMAIN);
+        echo '</p></div>';
     }
 
     /**
